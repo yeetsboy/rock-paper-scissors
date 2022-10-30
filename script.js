@@ -14,10 +14,10 @@ let aiScore = 0;
 
 
 /**
- * Gets the winner of the round
- * 
- * @param playerChoice {string} The button the user clicked
- * @param aiChoice {}
+ * Gets the winner of the round.
+ * @param   {string} playerChoice The button the user clicked.
+ * @param   {string} aiChoice     The randomly selected AI choice.
+ * @returns {string} string       The winner of the round.
  */
 const getWinner = (playerChoice, aiChoice) => {
 
@@ -41,28 +41,22 @@ const getWinner = (playerChoice, aiChoice) => {
 
 
 /**
- * Updates the scores display for the round
- * 
- * @param winner {string} The winner of the round. For deciding which score display to update
+ * Updates the scores display for the round.
+ * @param {string} winner The winner of the round.
  */
 const updateScores = winner => {
   let playerScore = parseInt(playerScoreDisplay.textContent);
   let aiScore = parseInt(aiScoreDisplay.textContent);
-  // console.log(`The winner is: ${winner}`);
-  // console.log(playerScore, aiScore);
   switch (winner) {
     case 'player':
       playerScore += 1;
       playerScoreDisplay.innerHTML = playerScore.toString();
-      // console.log(`Player score: ${playerScore}`);
       break;
     case 'ai':
       aiScore += 1;
       aiScoreDisplay.innerHTML = aiScore.toString();
-      // console.log(`AI score: ${aiScore}`);
       break;
     default:
-      // console.log('Draw!');
       break;
   }
 }
@@ -73,6 +67,7 @@ const updateScores = winner => {
 
 /**
  * For handling button clicks.
+ * @param {string} button The button that the user clicked.
  */
 const handleButtonClick = button => {
 
@@ -92,7 +87,7 @@ const handleButtonClick = button => {
         break;
     }
 
-    // AI will make its choice and screen will be updated
+    // AI will make its choice
     let aiChoice = 0;
     aiChoice = Math.floor(Math.random() * 100);
 
@@ -107,8 +102,10 @@ const handleButtonClick = button => {
       aiScreen.innerHTML = '<i class="fa fa-hand-scissors-o fa-5x""></i>';
     }
 
+    // Get the winner
     const winner = getWinner(button, aiChoice);
 
+    // Update the screen
     updateScores(winner);
   } else {
 
@@ -120,6 +117,7 @@ const handleButtonClick = button => {
     playerScreen.innerHTML = '<i class="fas fa-user-alt fa-5x"></i>';
     aiScreen.innerHTML = '<i class="fas fa-desktop fa-5x"></i>';
   }
+  
 }
 
 
